@@ -6,6 +6,7 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
+        val tempText = findViewById<TextView>(R.id.tempText)
+
         thread {
             try {
                 val service: WeatherService = retrofit.create(WeatherService::class.java)
@@ -49,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                     ?: throw IllegalStateException("bodyがnullだよ！")
 
                 Handler(Looper.getMainLooper()).post {
+                    tempText.text = weatherApiResponse.main.temp.toString()
                     Log.d("response-weather", weatherApiResponse.toString())
                 }
             } catch (e: Exception) {
