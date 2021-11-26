@@ -48,8 +48,9 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif-medium"
+            android:paddingStart="0dp"
+            android:paddingEnd="8dp"
             android:text="@string/text_temp"
             android:textAlignment="textStart"
             android:textSize="24sp" />
@@ -61,18 +62,7 @@
             android:fontFamily="sans-serif-light"
             android:textAlignment="textEnd"
             android:textSize="24sp"
-            tools:text="00.00" />
+            tools:text="13" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/weather_icon"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
