@@ -6,8 +6,10 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val tempText = findViewById<TextView>(R.id.tempText)
+        val weatherIcon = findViewById<ImageView>(R.id.imageView)
 
         thread {
             try {
@@ -52,8 +55,13 @@ class MainActivity : AppCompatActivity() {
                     ?: throw IllegalStateException("bodyがnullだよ！")
 
                 Handler(Looper.getMainLooper()).post {
+                    Log.d("response-weather", weatherApiResponse.weather.toString())
+                    val weatherIconUrl = weatherApiResponse.weather[0].icon
                     tempText.text = weatherApiResponse.main.temp.toString()
-                    Log.d("response-weather", weatherApiResponse.toString())
+                    Glide
+                        .with(this)
+                        .load("https://openweathermap.org/img/wn/$weatherIconUrl@2x.png")
+                        .into(weatherIcon)
                 }
             } catch (e: Exception) {
                 Log.d("response-weather", "debug $e")

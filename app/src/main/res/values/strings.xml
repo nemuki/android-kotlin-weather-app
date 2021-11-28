@@ -3,4 +3,5 @@
     <string name="post_button">Post</string>
     <string name="text_placeholder">CityName</string>
     <string name="text_temp">Temp</string>
+    <string name="description_weather_icon">Weather status icon</string>
 </resources>
