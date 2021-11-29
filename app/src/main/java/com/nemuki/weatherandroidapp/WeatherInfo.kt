@@ -26,9 +26,7 @@ data class Weather(
     val main: String,
     val description: String,
     val icon: String
-) {
-    val weatherInfoList = listOf(id, main, description, icon)
-}
+)
 
 data class Main(
     val temp: Double,
